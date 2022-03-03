@@ -14,7 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "supervisor ./src/index.js"
+    "dev": "supervisor ./index.js"
   },
   "repository": {
     "type": "git",
