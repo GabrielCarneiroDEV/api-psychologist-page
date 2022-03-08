@@ -15,12 +15,12 @@ try {
 
 
 const sendPost = async (req, res) => {
-    const {author, post_text, title, subtitle, highlight, image} = req.body;
+    const {author, post_text, title, subtitle, highlight, image, category} = req.body;
     const post_date = new Date()
 
     try {
      const newPost = await knex("posts").insert({
-        author, post_text, title, subtitle, highlight, image, post_date
+        author, post_text, title, subtitle, highlight, image, post_date, category
     });
 
     if (!newPost) {
