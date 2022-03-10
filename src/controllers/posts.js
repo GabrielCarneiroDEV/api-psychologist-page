@@ -45,7 +45,7 @@ const editPost = async (req, res) => {
 
   try {
     const post = await knex('posts').where({ id });
-    
+
     const updatePost = await knex('posts')
       .where({ id })
       .update({
@@ -55,7 +55,6 @@ const editPost = async (req, res) => {
         subtitle: subtitle ?? post.subtitle,
         highlight: highlight ?? post.highlight,
         image: image ?? post.image,
-        post_date: post_date ?? post.post_date,
         category: category ?? post.category,
       });
 
