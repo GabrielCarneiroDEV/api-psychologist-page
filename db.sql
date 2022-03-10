@@ -5,6 +5,7 @@ create table posts(
   author text not null,
   post_text text not null,
   post_date date not null,
+  category text not null,
   title text not null,
   subtitle text,
   highlight text not null,

@@ -37,7 +37,28 @@ const sendPost = async (req, res) => {
     
 };
 
+const deletePost = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+     const deletedPost = await knex("posts").where({id}).del();
+
+    if (!deletedPost) {
+        return res
+          .status(400)
+          .json({ mensagem: "Não foi possível deletar o post" });
+      }
+  
+      return res.status(200).json({ mensagem: "Post deletado com sucesso!" });
+  
+    } catch (error) {
+        return res.status(400).json({ mensagem: error.message });
+    }
+    
+};
+
 module.exports = {
   getPosts,
   sendPost,
+  deletePost
 };
