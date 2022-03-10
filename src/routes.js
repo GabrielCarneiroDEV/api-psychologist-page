@@ -3,7 +3,7 @@ const { getPosts, sendPost, deletePost, editPost, getPost } = require('./control
 const routes = express();
 
 routes.get('/posts', getPosts);
-routes.get('/post', getPost);
+routes.get('/post/:id', getPost);
 routes.post('/posts', sendPost);
 routes.delete('/posts/:id', deletePost);
 routes.put('/posts/:id', editPost);
