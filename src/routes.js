@@ -5,6 +5,6 @@ const routes = express();
 
 routes.get('/posts', getPosts);
 routes.post('/posts', sendPost)
-routes.post('/posts/:id', deletePost)
+routes.delete('/posts/:id', deletePost)
 
 module.exports = routes;
