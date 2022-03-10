@@ -1,10 +1,10 @@
 const express = require('express');
-const { getPosts,  sendPost, deletePost } = require('./controllers/posts');
+const { getPosts, sendPost, deletePost, editPost } = require('./controllers/posts');
 const routes = express();
 
-
 routes.get('/posts', getPosts);
-routes.post('/posts', sendPost)
-routes.delete('/posts/:id', deletePost)
+routes.post('/posts', sendPost);
+routes.delete('/posts/:id', deletePost);
+routes.put('/posts/:id', editPost);
 
 module.exports = routes;
