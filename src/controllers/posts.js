@@ -43,18 +43,21 @@ const editPost = async (req, res) => {
     req.body;
   const { id } = req.params;
 
- 
-
   try {
-    const updatePost = await knex('posts').where({ id }).update({
-      author,
-      post_text,
-      title,
-      subtitle,
-      highlight,
-      image,
-      category,
-    });
+    const post = await knex('posts').where({ id });
+    
+    const updatePost = await knex('posts')
+      .where({ id })
+      .update({
+        author: author ?? post.author,
+        post_text: post_text ?? post.post_text,
+        title: title ?? post.title,
+        subtitle: subtitle ?? post.subtitle,
+        highlight: highlight ?? post.highlight,
+        image: image ?? post.image,
+        post_date: post_date ?? post.post_date,
+        category: category ?? post.category,
+      });
 
     if (!updatePost) {
       return res
