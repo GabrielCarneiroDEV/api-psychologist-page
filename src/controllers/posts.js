@@ -9,6 +9,16 @@ const getPosts = async (req, res) => {
   }
 };
 
+const getPost = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const post = await knex('posts').where({ id }).first();
+    res.json(post);
+  } catch (error) {
+    return res.status(400).json({ mensagem: error.message });
+  }
+};
+
 const sendPost = async (req, res) => {
   const { author, post_text, title, subtitle, highlight, image, category } =
     req.body;
@@ -52,11 +62,7 @@ const editPost = async (req, res) => {
   if (category) body.category = category;
 
   try {
-   
-
-    const updatePost = await knex('posts')
-      .where({ id })
-      .update(body);
+    const updatePost = await knex('posts').where({ id }).update(body);
 
     if (!updatePost) {
       return res
@@ -93,4 +99,5 @@ module.exports = {
   sendPost,
   deletePost,
   editPost,
+  getPost
 };
