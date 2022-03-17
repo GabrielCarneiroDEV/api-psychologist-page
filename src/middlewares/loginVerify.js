@@ -1,14 +1,12 @@
-const jwt = require("jsonwebtoken");
-const knex = require("../db_connection");
+const jwt = require('jsonwebtoken');
+const { knex } = require('../db_connection');
 
 const loginVerify = async (req, res, next) => {
-
-    const { authorization } = req.headers;
+  const { authorization } = req.headers;
 
   if (!authorization) {
-    return res.status(401).json({ mensagem: "não autorizado!!" });
+    return res.status(401).json({ mensagem: 'não autorizado!!' });
   }
-
 
   try {
     const token = authorization.replace('Bearer ', '').trim();
@@ -18,20 +16,19 @@ const loginVerify = async (req, res, next) => {
     const findUser = await knex('users').where({ id }).first();
 
     if (!findUser) {
-        return res.status(404).json({ mensagem: 'Usuario não encontrado' });
+      return res.status(404).json({ mensagem: 'Usuario não encontrado' });
     }
 
-    const { password:_, ...user } = findUser;
+    const { password: _, ...user } = findUser;
 
     req.user = user;
 
     next();
-      
   } catch (error) {
-     return res.status(400).json({mensagem: error.message})
+    return res.status(400).json({ mensagem: error.message });
   }
 };
 
 module.exports = {
-    loginVerify
-}
+  loginVerify,
+};
