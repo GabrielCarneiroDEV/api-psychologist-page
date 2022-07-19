@@ -21,3 +21,5 @@ const sendMail = async (req, res) => {
     return res.status(400).json(error.message);
   }
 };
+
+module.exports ={ sendMail }
