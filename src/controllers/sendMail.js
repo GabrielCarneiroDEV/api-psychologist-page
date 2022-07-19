@@ -1,3 +1,5 @@
+const  transporter  = require("../nodemailer");
+
 const sendMail = async (req, res) => {
   const { name, email, phone, text } = req.body;
 
