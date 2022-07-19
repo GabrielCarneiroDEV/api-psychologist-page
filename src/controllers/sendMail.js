@@ -3,11 +3,14 @@ const  transporter  = require("../nodemailer");
 const sendMail = async (req, res) => {
   const { name, email, phone, text } = req.body;
 
-  const message = `Nome: ${name}
+  const message = `
+  Nome: ${name}
   E-mail: ${email}
   Telefone: ${phone}
 
-  Mensagem: ${text}
+  Mensagem:
+  
+  ${text}
   ` 
 
   try {
